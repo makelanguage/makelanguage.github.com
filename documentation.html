@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta name="keywords" content="HTML, CSS" />
+
+    <title>Documentation</title>
+    <link rel="stylesheet" href="styles2.css" />
+  </head>
+  <body>
+    <div class="topnav">
+      <a href="index.html">Download</a>
+      <a href="https://discord.gg/EKpfn8m4Zc">Discord</a>
+      <a href="about.html">About</a>
+      <a class="active" href="documentation.html">Documentation</a>
+    </div>
+    <p1 class="title">Welcome to the MakeLanguage documentation!</p1>
+    <p class="text">
+      MakeLanguage is a C++ library used for making easy programming
+      languages.<br />To get started, download MakeLanguage on
+      <a href="index.html">this link</a>, then extract the<br />
+      zip file to your working directory, then create a new file, named<br />
+      "main.cpp" or "language.cpp" ..., then at the beginning type <br />
+      "#include "makelanguage.h"", then compile the file<br />and if you won't
+      get any errors, then everything works 👍<br />..If not, then contact me on
+      the discord server.
+    </p>
+    <p1 class="title">A basic programming language</p1>
+    <p class="text">Here is a example of a basic programming language:</p>
+    <div class="code">
+      <span style="color: #a04000">#include</span> &#60;iostream&#62;<br />
+      <span style="color: #a04000">#include</span>
+      &quot;makelanguage.h&quot;<br />
+      <br />
+      <span style="color: #0000a0">void</span> ReadLine(int LineNumber, string
+      Line) {<br />
+      &nbsp;&nbsp;&nbsp;&nbsp;if(Interpreter::IsComment(Line)) {<br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// It is a comment<br />
+      &nbsp;&nbsp;&nbsp;&nbsp;} else if(Interpreter::IsCommand(Line,
+      &quot;print&quot;)) {<br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for(std::string i :
+      Interpreter::Arguments(Line, &quot;print&quot;)) {<br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::cout
+      << i;<br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::cout << endl;<br />
+      &nbsp;&nbsp;&nbsp;&nbsp;} else {<br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Invalid syntax!<br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::cout << &quot;Error:
+      invalid syntax!&quot; << std::endl;<br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exit(-1);<br />
+      &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+      }<br />
+      <br />
+      <span style="color: #0000a0">int</span> main(int argc, char *argv[]) {<br />
+      &nbsp;&nbsp;&nbsp;&nbsp;Interpreter::ReadLines(argv[1], &ReadLine);<br />
+      }
+    </div>
+
+    <p1 class="text">...Now if we compile it:</p1>
+    <div class="code2">
+      % clang++ main.cpp -o mylanguage<br />mylanguage.cpp:8:21:
+      <span style="color: #e700d8">warning:</span> range-based for loop is a
+      C++11 extension<br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Wc++11-extensions]<br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for(std::string
+      i : Interpreter::Arguments(Line, "print")) {<br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^<br />
+      1 warning generated.
+    </div>
+    <p1 class="text"
+      >Now, it shows only some warning, but thats fine.<br /><br
+    /></p1>
+    <p1 class="title">Running the programming language<br /></p1>
+    <p1 class="text"
+      >If we now try to run it, we need first the language file.<br />main.language:<br
+    /></p1>
+    <div class="code">
+      print("Hello, ","world!")<br />// Test comment<br /><br />print("My
+      favurite number is: ",7)
+    </div>
+    <p1 class="text">Now, let's compile it:<br /></p1>
+    <div class="code">
+      % ./mylanguage main.language<br />Hello, world!<br />My favurite number
+      is: 7<br />
+    </div>
+    <p1 class="text">And it is working!<br /><br /></p1>
+    <p1 class="title">List of commands<br /></p1>
+    <p1 class="subtitle">Interpreter::ReadLines<br /></p1>
+    <div class="thing">
+      <u><span STYLE="font-size:180%">Arguments</span></u
+      ><br />Interpreter::ReadLines(string FileName, void (*Function)(int,
+      string));<br /><br>
+      <u><span STYLE="font-size:180%">Description</span></u
+      ><br />Interpreter::ReadLines reads the file line by line and calls the function (int LineNumber, string Line) on every line.<br /><br>
+    </div>
+    <p1 class="subtitle">Interpreter::IsComment<br /></p1>
+    <div class="thing">
+      <u><span STYLE="font-size:180%">Arguments</span></u
+      ><br />Interpreter::IsComment(string Line, string Comment = "//");<br /><br>
+      <u><span STYLE="font-size:180%">Description</span></u
+      ><br />Checks, if the line is a comment.<br /><br>
+    </div>
+
+    <p1 class="subtitle">Interpreter::IsCommand<br /></p1>
+    <div class="thing">
+      <u><span STYLE="font-size:180%">Arguments</span></u
+      ><br />Interpreter::IsCommand(string Line, string Command);<br /><br>
+      <u><span STYLE="font-size:180%">Description</span></u
+      ><br />Checks, if the line contains a command.<br /><br>
+    </div>
+
+    <p1 class="subtitle">Interpreter::Arguments<br /></p1>
+    <div class="thing">
+      <u><span STYLE="font-size:180%">Arguments</span></u
+      ><br />Interpreter::Arguments(string Line, string CurrentCommand);<br /><br>
+      <u><span STYLE="font-size:180%">Description</span></u
+      ><br />Returns arguments of current line<br /><br>
+    </div>
+
+    <p1 class="subtitle">Interpreter::GetArguments<br /></p1>
+    <div class="thing">
+      <u><span STYLE="font-size:180%">Arguments</span></u
+      ><br />Interpreter::GetArguments(string Line, string Command);<br /><br>
+      <u><span STYLE="font-size:180%">Description</span></u
+      ><br />Returns arguments in a string form ("1, 2, 3")<br /><br>
+    </div>
+
+    <p1 class="subtitle">Interpreter::Split<br /></p1>
+    <div class="thing">
+      <u><span STYLE="font-size:180%">Arguments</span></u
+      ><br />Interpreter::Split(string String);<br /><br>
+      <u><span STYLE="font-size:180%">Description</span></u
+      ><br />Splits the string by commas<br /><br>
+    </div>
+
+  </body>
+</html>
